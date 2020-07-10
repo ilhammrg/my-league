@@ -1,0 +1,52 @@
+{
+    "name": "My League",
+    "short_name": "My League",
+    "theme_color": "#37003c",
+    "background_color": "#37003c",
+    "display": "standalone",
+    "scope": "/",
+    "orientation": "portrait",
+    "start_url": "/index.html",
+    "icons": [
+      {
+        "src": "",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "128x128",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "152x152",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+}
