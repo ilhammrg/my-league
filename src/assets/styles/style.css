@@ -4,5 +4,9 @@ nav {
 
 .trophy-logo {
     width: auto;
-    height: 26px;
+    height: 24px;
+}
+
+.resolve-icon {
+    display: none;
 }
