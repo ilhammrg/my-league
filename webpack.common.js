@@ -3,10 +3,13 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const manifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        sw: "./src/assets/services/sw.js",
+        index: "./src/index.js"
+    },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "index.js"
+        filename: "[name].bundle.js"
     },
     module: {
         rules: [
