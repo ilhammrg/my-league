@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 nav {
     background-color: #37003c;
 }
@@ -5,6 +11,24 @@ nav {
 .trophy-logo {
     width: auto;
     height: 24px;
+    margin-right: 8px;
+}
+
+#main-content {
+    padding-top: 20px;
+    flex: 1 0 auto;
+}
+
+#standings, #top-scorers {
+    margin-top: 20px;
+}
+
+footer {
+    padding-bottom: 15px;
+}
+
+.heart-icon {
+    color: #ef5350;
 }
 
 .resolve-icon {
