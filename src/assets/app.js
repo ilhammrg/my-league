@@ -1,7 +1,9 @@
 import Navbar from './components/navbar.js';
 import Sidebar from './components/sidebar.js';
 import Footer from './components/footer.js';
-import PremierLeague from './components/premier-league.js';
+import league from './components/league.js';
+import leagueApi from './api/league-api.js';
+import urls from './api/urls.js';
 
 const app = () => {
     const registerServiceWorker = () => {
@@ -35,24 +37,39 @@ const app = () => {
     // Render Footer
     const footerContainer = document.querySelector('.page-footer');
     footerContainer.innerHTML = Footer;
+
+    // Get league data
+    const premierLeagueBtnClicked = async () => {
+        const leagueData = await leagueApi(urls.premierLeague.general);
+        const premierLeague = new league(leagueData);
+        premierLeague.render();
+    }
+
+    const primeraDivisionBtnClicked = async () => {
+        const leagueData = await leagueApi(urls.primeraDivision.general);
+        const primeraDivision = new league(leagueData);
+        primeraDivision.render();
+    }
+
+    const serieABtnClicked = async () => {
+        const leagueData = await leagueApi(urls.serieA.general);
+        const serieA = new league(leagueData);
+        serieA.render();
+    }
     
     // Render main content
-    const mainContainer = document.getElementById('main-content');
-
     document.body.addEventListener('click', event => {
         const navButton = event.target;
         if (navButton.classList.contains('premier-league')) {
-            mainContainer.innerHTML = PremierLeague;
-            const tabs = document.querySelector('.tabs');
-            M.Tabs.init(tabs, {
-                swipeable: true
-            });
+            premierLeagueBtnClicked(); 
         } else if (navButton.classList.contains('primera-division')) {
-            mainContainer.innerHTML = `<h5>Under construction.</h5>`;
+            primeraDivisionBtnClicked();
         } else if (navButton.classList.contains('serie-a')) {
-            mainContainer.innerHTML = `<h5>Under construction.</h5>`;
+            serieABtnClicked();
         } else if (navButton.classList.contains('home')) {
-            mainContainer.innerHTML = `<h5>Under construction.</h5>`;
+
+        } else if (navButton.classList.contains('saved-teams')) {
+
         }
         
     });

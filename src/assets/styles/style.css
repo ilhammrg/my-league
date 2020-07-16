@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: 'Varta', sans-serif;
 }
 
 nav {
@@ -33,4 +34,14 @@ footer {
 
 .resolve-icon {
     display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .brand-logo span {
+        font-size: 0.7em;
+    }
+
+    .trophy-logo {
+        height: 16px;
+    }
 }
