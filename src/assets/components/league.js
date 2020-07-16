@@ -1,6 +1,47 @@
 class league {
-    constructor(leagueData) {
+    constructor(leagueData, standings, topScorers) {
         this.leagueData = leagueData;
+        this.standings = standings;
+        this.topScorers = topScorers;
+    }
+
+    renderStandings() {
+        let clubs = '';
+        this.standings.standings[0].table.forEach(club => {
+            clubs += `
+                <tr>
+                    <td>${club.position}</td>
+                    <td>
+                        
+                        <span class="hide-on-small-only">${club.team.name}</span>
+                    </td>
+                    <td>${club.playedGames}</td>
+                    <td>${club.won}</td>
+                    <td>${club.draw}</td>
+                    <td>${club.lost}</td>
+                    <td>${club.goalsFor}</td>
+                    <td>${club.goalsAgainst}</td>
+                    <td>${club.goalDifference}</td>
+                    <td>${club.points}</td>
+                </tr>
+            `;
+        });
+        return clubs;
+    }
+
+    renderTopScorers() {
+        let players = '';
+        this.topScorers.scorers.forEach(player => {
+            players += `
+                <tr>
+                    <td>${player.player.name}</td>
+                    <td class="hide-on-small-only">${player.player.position}</td>
+                    <td>${player.team.name}</td>
+                    <td>${player.numberOfGoals}</td>
+                </tr>
+            `;
+        });
+        return players;
     }
 
     render() {
@@ -14,99 +55,47 @@ class league {
                 <p>Area: ${this.leagueData.area.name}</p>
             </div>
             <div class="col s12">
-                <ul class="tabs tabs-fixed-width">
+                <ul class="tabs">
                     <li class="tab col s6 grey lighten-4 waves-purple"><a class="active" href="#standings">Standings</a></li>
                     <li class="tab col s6 grey lighten-4 waves-purple"><a class="" href="#top-scorers">Top Scorers</a></li>
                 </ul>
             </div>
             <div id="standings" class="col s12">
-                <p>Last Updated: 2020-07-09T07:37:00Z</p>
+                <p>Last Updated: ${this.standings.competition.lastUpdated}</p>
                 <table class="highlight centered">
                     <thead>
                         <tr>
-                            <th>Position</th>
+                            <th>#</th>
                             <th>Club</th>
-                            <th>Played</th>
-                            <th>Won</th>
-                            <th>Draw</th>
-                            <th>Lost</th>
+                            <th class="hide-on-small-only">Played</th>
+                            <th class="hide-on-small-only">Won</th>
+                            <th class="hide-on-small-only">Draw</th>
+                            <th class="hide-on-small-only">Lost</th>
+                            <th class="hide-on-med-and-up">P</th>
+                            <th class="hide-on-med-and-up">W</th>
+                            <th class="hide-on-med-and-up">D</th>
+                            <th class="hide-on-med-and-up">L</th>
                             <th>GF</th>
                             <th>GA</th>
                             <th>GD</th>
                             <th>Pts</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Chelsea</td>
-                            <td>30</td>
-                            <td>20</td>
-                            <td>5</td>
-                            <td>5</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>65</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Chelsea</td>
-                            <td>30</td>
-                            <td>20</td>
-                            <td>5</td>
-                            <td>5</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>65</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Chelsea</td>
-                            <td>30</td>
-                            <td>20</td>
-                            <td>5</td>
-                            <td>5</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>30</td>
-                            <td>65</td>
-                        </tr>
-                    </tbody>
+                    <tbody>${this.renderStandings()}</tbody>
                 </table>
             </div>
             <div id="top-scorers" class="col s12">
-                <p>Last Updated: 2020-07-09T07:37:00Z</p>
+                <p>Last Updated: ${this.topScorers.competition.lastUpdated}</p>
                 <table class="highlight centered">
                     <thead>
                         <tr>
-                            <th>Player Name</th>
-                            <th>Position</th>
+                            <th>Name</th>
+                            <th class="hide-on-small-only">Pos</th>
                             <th>Club</th>
-                            <th>Total Goals</th>
+                            <th>Goals</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mohamed Salah</td>
-                            <td>Attacker</td>
-                            <td>Liverpool</td>
-                            <td>19</td>
-                        </tr>
-                        <tr>
-                            <td>Mohamed Salah</td>
-                            <td>Attacker</td>
-                            <td>Liverpool</td>
-                            <td>19</td>
-                        </tr>
-                        <tr>
-                            <td>Mohamed Salah</td>
-                            <td>Attacker</td>
-                            <td>Liverpool</td>
-                            <td>19</td>
-                        </tr>
-                    </tbody>
+                    <tbody>${this.renderTopScorers()}</tbody>
                 </table>
             </div>
         </div>

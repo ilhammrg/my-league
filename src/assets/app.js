@@ -41,19 +41,25 @@ const app = () => {
     // Get league data
     const premierLeagueBtnClicked = async () => {
         const leagueData = await leagueApi(urls.premierLeague.general);
-        const premierLeague = new league(leagueData);
+        const standings = await leagueApi(urls.premierLeague.standings);
+        const topScorers = await leagueApi(urls.premierLeague.topScorers);
+        const premierLeague = new league(leagueData, standings, topScorers);
         premierLeague.render();
     }
 
     const primeraDivisionBtnClicked = async () => {
         const leagueData = await leagueApi(urls.primeraDivision.general);
-        const primeraDivision = new league(leagueData);
+        const standings = await leagueApi(urls.primeraDivision.standings);
+        const topScorers = await leagueApi(urls.primeraDivision.topScorers);
+        const primeraDivision = new league(leagueData, standings, topScorers);
         primeraDivision.render();
     }
 
     const serieABtnClicked = async () => {
         const leagueData = await leagueApi(urls.serieA.general);
-        const serieA = new league(leagueData);
+        const standings = await leagueApi(urls.serieA.standings);
+        const topScorers = await leagueApi(urls.serieA.topScorers);
+        const serieA = new league(leagueData, standings, topScorers);
         serieA.render();
     }
     

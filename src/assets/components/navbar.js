@@ -3,8 +3,13 @@ const Navbar =
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper container">
-                    <a href="#home" class="home brand-logo left hide-on-med-and-down"><img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy">My League</a>
-                    <a href="#home" class="home brand-logo hide-on-large-only"><img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy"><span>My League</span></a>
+                    <a href="#home" class="home brand-logo left hide-on-med-and-down">
+                        <img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy">
+                        <span>My League</span>
+                    </a>
+                    <a href="#home" class="home brand-logo hide-on-large-only">
+                        <img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy">
+                        <span>My League</span></a>
                     <a class="sidenav-trigger hide-on-large-only left" data-target="menu-side" href="#">
                         <i class="material-icons">apps</i>
                     </a>

@@ -6,7 +6,8 @@ const leagueApi = url => {
         }
     })
         .then(response => response.json())
-        .then(data => data);
+        .then(data => data)
+        .catch(error => console.log("Can't get data", error));
 }
 
 export default leagueApi;
