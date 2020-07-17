@@ -33,6 +33,18 @@ nav {
     flex: 1 0 auto;
 }
 
+/* Preloader */
+.preloader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30vh;
+}
+
+.spinner-red, .spinner-red-only {
+    border-color: #aaa;
+}
+
 /* League page */
 #standings, #top-scorers {
     margin-top: 20px;

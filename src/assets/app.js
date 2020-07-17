@@ -59,7 +59,7 @@ const app = () => {
     // Window url location event listener
     const urlChange = () => {
         window.addEventListener("hashchange", () => {
-            const urlHash = window.location.hash.replace('#', '');
+            const urlHash = window.location.hash;
             if (urlHash.includes('premier-league')) {
                 getPremierLeague();
             } else if (urlHash.includes('primera-division')) {
