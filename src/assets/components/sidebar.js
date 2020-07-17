@@ -25,10 +25,10 @@ const Sidebar =
                 <span class="serie-a">Serie A</span>
             </a>
         </li>
-        <li class="saved-teams">
-            <a class="saved-teams waves-effect waves-red sidenav-close" href="#saved-teams">
-                <i class="saved-teams material-icons left">bookmark</i>
-                <span class="saved-teams">Saved Teams</span>
+        <li class="saved-clubs">
+            <a class="saved-clubs waves-effect waves-red sidenav-close" href="#saved-clubs">
+                <i class="saved-clubs material-icons left">bookmark</i>
+                <span class="saved-clubs">Saved clubs</span>
             </a>
         </li>
     </ul>

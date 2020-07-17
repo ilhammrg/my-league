@@ -13,7 +13,8 @@ const urls = {
         general: 'https://api.football-data.org/v2/competitions/2019',
         standings: 'https://api.football-data.org/v2/competitions/2019/standings',
         topScorers: 'https://api.football-data.org/v2/competitions/2019/scorers'
-    }
+    },
+    club: 'https://api.football-data.org/v2/teams/'
 }
 
 export default urls;

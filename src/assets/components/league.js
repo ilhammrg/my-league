@@ -12,8 +12,9 @@ class league {
                 <tr>
                     <td>${club.position}</td>
                     <td>
-                        
-                        <span class="hide-on-small-only">${club.team.name}</span>
+                        <span class="hide-on-small-only">
+                           <a class="club-link" href="#teams/${club.team.id}" data-clubid="${club.team.id}">${club.team.name}</a>
+                        </span>
                     </td>
                     <td>${club.playedGames}</td>
                     <td>${club.won}</td>
@@ -50,7 +51,7 @@ class league {
         mainContainer.innerHTML = 
         `
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 header-league card grey lighten-5">
                 <h5>${this.leagueData.name}</h5>
                 <p>Area: ${this.leagueData.area.name}</p>
             </div>
@@ -62,8 +63,8 @@ class league {
             </div>
             <div id="standings" class="col s12">
                 <p>Last Updated: ${this.standings.competition.lastUpdated}</p>
-                <table class="highlight centered">
-                    <thead>
+                <table class="highlight striped centered">
+                    <thead class="red-text text-lighten-2">
                         <tr>
                             <th>#</th>
                             <th>Club</th>
@@ -86,7 +87,7 @@ class league {
             </div>
             <div id="top-scorers" class="col s12">
                 <p>Last Updated: ${this.topScorers.competition.lastUpdated}</p>
-                <table class="highlight centered">
+                <table class="highlight striped centered">
                     <thead>
                         <tr>
                             <th>Name</th>

@@ -17,7 +17,7 @@ const Navbar =
                         <li><a class="premier-league waves-effect waves-red" href="#premier-league">Premier League</a></li>
                         <li><a class="primera-division waves-effect waves-red" href="#primera-division">Primera Division</a></li>
                         <li><a class="serie-a waves-effect waves-red" href="#serie-a">Serie A</a></li>
-                        <li><a class="saved-teams waves-effect waves-red" href="#saved-teams">Saved Teams</a></li>
+                        <li><a class="saved-clubs waves-effect waves-red" href="#saved-clubs">Saved Clubs</a></li>
                     </ul>
                 </div>
             </nav>
