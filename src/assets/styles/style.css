@@ -3,12 +3,13 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: 'Varta', sans-serif;
+    font-family: 'Epilogue', sans-serif;
     overflow: auto;
+    color: #fff;
 }
 
 a {
-    color: #e57373;
+    color: #b2ebf2;
 }
 
 .material-icons {
@@ -16,20 +17,21 @@ a {
 }
 
 /* Navbar */
-nav {
-    background-color: #37003c;
-}
-
-
 .trophy-logo {
     height: 30px;
     margin-right: 7px;
     vertical-align: middle;
 }
 
+/* Sidebar */
+.sidenav {
+    border-top-right-radius: 20px;
+}
+
 /* Main content */
 #main-content {
-    padding-top: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     flex: 1 0 auto;
 }
 
@@ -45,13 +47,35 @@ nav {
     border-color: #aaa;
 }
 
+/* Home page */
+.home-nav-container {
+    border-radius: 7px;
+}
+
+.home-nav-button {
+    padding: 15px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 250px 150px;
+    min-height: 300px;
+}
+
 /* League page */
 #standings, #top-scorers {
     margin-top: 20px;
 }
 
 .header-league {
-    border-radius: 3px;
+    border-radius: 7px;
+}
+
+.tabs {
+    border-radius: 7px;
+}
+
+.tabs .indicator {
+    background-color: #b2ebf2;
 }
 
 .tabs-content.carousel { 
@@ -65,10 +89,18 @@ nav {
     height: 100%; 
 }
 
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: #263238;
+}
+
 /* Club page */
 .club-card, .squad-card {
     padding: 15px;
-    border-radius: 3px;
+    border-radius: 15px;
+}
+
+.squad-card {
+    margin-top: 8px;
 }
 
 .club-logo {
@@ -88,12 +120,16 @@ footer {
 @media screen and (max-width: 992px) {
     #main-content {
         width: 95%;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
 
 @media screen and (max-width: 600px) {
     #main-content {
         width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     .brand-logo span {
@@ -107,4 +143,9 @@ footer {
     .squad-card {
         width: 100%;
     }
+
+    .sidenav {
+        width: 75%;
+    }
+
 }

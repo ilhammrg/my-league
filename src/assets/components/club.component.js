@@ -27,10 +27,10 @@ class club {
         mainContainer.innerHTML = `
         <div class="row">
             <div class="col s12 m6 offset-m3 l4">
-                <div class="card club-card grey lighten-5">
+                <div class="card club-card blue-grey darken-3">
                     <div class="card-image">
                         <img class="club-logo" src="${this.clubData.crestUrl}" alt="club-logo">
-                        <a class="save-button btn-floating halfway-fab waves-effect waves-light red lighten-2" title="Save club">
+                        <a class="save-button btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Save club">
                             <i class="material-icons">add</i>
                         </a>
                     </div>
@@ -54,10 +54,10 @@ class club {
                     </div>
                 </div>
             </div>
-            <div class="col s12 l8 squad-card grey lighten-5">
-                <h5 class="red-text text-lighten-2 center">Squads</h5>
-                <table class="highlight striped centered">
-                    <thead class="red-text text-lighten-2">
+            <div class="col s12 l8 squad-card blue-grey darken-3">
+                <h5 class="center">Squads</h5>
+                <table class="highlight centered">
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>

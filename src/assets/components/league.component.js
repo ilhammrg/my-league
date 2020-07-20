@@ -12,17 +12,17 @@ class league {
                 <tr>
                     <td>${club.position}</td>
                     <td>
-                        <span class="hide-on-small-only">
-                           <a class="club-link" href="#teams/${club.team.id}" data-clubid="${club.team.id}">${club.team.name}</a>
+                        <span>
+                           <a class="club-link" href="#teams/${club.team.id}" title="${club.team.name}" data-clubid="${club.team.id}">${club.team.name}</a>
                         </span>
                     </td>
                     <td>${club.playedGames}</td>
                     <td>${club.won}</td>
                     <td>${club.draw}</td>
                     <td>${club.lost}</td>
-                    <td>${club.goalsFor}</td>
-                    <td>${club.goalsAgainst}</td>
-                    <td>${club.goalDifference}</td>
+                    <td class="hide-on-small-only">${club.goalsFor}</td>
+                    <td class="hide-on-small-only">${club.goalsAgainst}</td>
+                    <td class="hide-on-small-only">${club.goalDifference}</td>
                     <td>${club.points}</td>
                 </tr>
             `;
@@ -51,20 +51,20 @@ class league {
         mainContainer.innerHTML = 
         `
         <div class="row">
-            <div class="col s12 header-league card grey lighten-5">
+            <div class="col s12 header-league card blue-grey darken-3">
                 <h5>${this.leagueData.name}</h5>
                 <p>Area: ${this.leagueData.area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s6 grey lighten-4 waves-purple"><a class="active" href="#standings">Standings</a></li>
-                    <li class="tab col s6 grey lighten-4 waves-purple"><a class="" href="#top-scorers">Top Scorers</a></li>
+                    <li class="tab col s6 blue-grey darken-3 waves-teal"><a class="active white-text" href="#standings">Standings</a></li>
+                    <li class="tab col s6 blue-grey darken-3"><a class="white-text" href="#top-scorers">Top Scorers</a></li>
                 </ul>
             </div>
             <div id="standings" class="col s12">
                 <p>Last Updated: ${this.standings.competition.lastUpdated}</p>
-                <table class="highlight striped centered">
-                    <thead class="red-text text-lighten-2">
+                <table class="highlight centered">
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Club</th>
@@ -76,9 +76,9 @@ class league {
                             <th class="hide-on-med-and-up">W</th>
                             <th class="hide-on-med-and-up">D</th>
                             <th class="hide-on-med-and-up">L</th>
-                            <th>GF</th>
-                            <th>GA</th>
-                            <th>GD</th>
+                            <th class="hide-on-small-only">GF</th>
+                            <th class="hide-on-small-only">GA</th>
+                            <th class="hide-on-small-only">GD</th>
                             <th>Pts</th>
                         </tr>
                     </thead>
@@ -87,7 +87,7 @@ class league {
             </div>
             <div id="top-scorers" class="col s12">
                 <p>Last Updated: ${this.topScorers.competition.lastUpdated}</p>
-                <table class="highlight striped centered">
+                <table class="highlight centered">
                     <thead>
                         <tr>
                             <th>Name</th>

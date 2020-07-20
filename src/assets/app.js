@@ -1,9 +1,10 @@
-import Navbar from './components/navbar.js';
-import Sidebar from './components/sidebar.js';
-import Footer from './components/footer.js';
-import { getPremierLeague, getPrimeraDivision, getSerieA, getClubData } from './data-source/data-source.js';
+import urls from './data-source/urls.js';
+import { renderLeague, renderClub } from './data-source/render-league.js';
+import Home from './components/home.component.js';
 
-const app = () => {
+const { premierLeague, primeraDivision, serieA } = urls;
+
+const App = () => {
     const registerServiceWorker = () => {
         return navigator.serviceWorker.register('./sw.bundle.js')
             .then(registration => {
@@ -21,65 +22,75 @@ const app = () => {
     } else {
         registerServiceWorker();
     }
-    
-    // Render Navbar
-    const navbarContainer = document.getElementById('nav-container');
-    navbarContainer.innerHTML = Navbar;
 
-    // Render Sidebar
-    const sidebar = document.querySelector('.sidenav');
-    sidebar.innerHTML = Sidebar;
-    M.Sidenav.init(sidebar);
+    const renderPremierLeague = () => {
+        renderLeague(
+            premierLeague.general, 
+            premierLeague.standings, 
+            premierLeague.topScorers
+        );
+    }
 
-    // Render Footer
-    const footerContainer = document.querySelector('.page-footer');
-    footerContainer.innerHTML = Footer;
+    const renderPrimeraDivision = () => {
+        renderLeague(
+            primeraDivision.general,
+            primeraDivision.standings,
+            primeraDivision.topScorers
+        );
+    }
 
-    // Button event listener
-    const buttonClicked = () => {
-        document.body.addEventListener('click', event => {
+    const renderSerieA = () => {
+        renderLeague(
+            serieA.general,
+            serieA.standings,
+            serieA.topScorers
+        );
+    }
+
+    // Navbar button and sidebar button click event handler
+    const handleButtonClicked = () => {
+        document.addEventListener('click', event => {
             const button = event.target;
             if (button.classList.contains('premier-league')) {
-                getPremierLeague(); 
+                renderPremierLeague();
             } else if (button.classList.contains('primera-division')) {
-                getPrimeraDivision();
+                renderPrimeraDivision();
             } else if (button.classList.contains('serie-a')) {
-                getSerieA();
+                renderSerieA();
             } else if (button.classList.contains('home')) {
-                console.log('home');
+                Home();
             } else if (button.classList.contains('saved-clubs')) {
                 console.log('saved-clubs');
             } else if (button.classList.contains('club-link')) {
                 const clubID = button.dataset.clubid;
-                getClubData(clubID);
+                renderClub(urls.club, clubID);
             }
         });
     }
     
-    // Window url location event listener
-    const urlChange = () => {
+    // Window url location change event handler
+    const handleUrlChange = () => {
         window.addEventListener("hashchange", () => {
             const urlHash = window.location.hash;
             if (urlHash.includes('premier-league')) {
-                getPremierLeague();
+                renderPremierLeague();
             } else if (urlHash.includes('primera-division')) {
-                getPrimeraDivision();
+                renderPrimeraDivision();
             } else if (urlHash.includes('serie-a')) {
-                getSerieA();
+                renderSerieA();
             } else if (urlHash.includes('teams')) {
                 const clubID = window.location.hash.replace('#teams/', '');
-                getClubData(clubID);
+                renderClub(urls.club, clubID);
             } else if (urlHash.includes('home')) {
-                console.log('home');
+                Home();
             } else if (urlHash.includes('saved-clubs')) {
                 console.log('saved-clubs')
             }
         });
     }
 
-    // Render main content
-    urlChange();
-    buttonClicked();
+    handleUrlChange();
+    handleButtonClicked();
 }
 
-export default app;
+export default App;
