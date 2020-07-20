@@ -1,10 +1,13 @@
 import fallbackComponents from '../components/fallback.js';
 
+const tokenAPI = '0d08af0570034b03a525c4af84529e5c';
+const proxyNoCORS = 'https://cors-anywhere.herokuapp.com/';
+
 const leagueApi = url => {
-    return fetch(`${url}`, {
+    return fetch(proxyNoCORS + url, {
         method: 'GET',
         headers: {
-            'X-Auth-Token': '0d08af0570034b03a525c4af84529e5c'
+            'X-Auth-Token': tokenAPI
         },
         mode: 'cors'
     })
