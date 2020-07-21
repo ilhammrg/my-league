@@ -23,13 +23,15 @@ class club {
 
     render() {
         const mainContainer = document.getElementById('main-content');
+        const logoUrl = this.clubData.crestUrl.replace(/^http:\/\//i, 'https://');
+        console.log(logoUrl);
         mainContainer.innerHTML = '';
         mainContainer.innerHTML = `
         <div class="row">
             <div class="col s12 m6 offset-m3 l4">
                 <div class="card club-card blue-grey darken-3">
                     <div class="card-image">
-                        <img class="club-logo" src="${this.clubData.crestUrl}" alt="club-logo">
+                        <img class="club-logo" src="${logoUrl}" alt="club-logo">
                         <a class="save-button btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Save club">
                             <i class="material-icons">add</i>
                         </a>

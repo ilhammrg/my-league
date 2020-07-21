@@ -1,6 +1,6 @@
 class league {
-    constructor(leagueData, standings, topScorers) {
-        this.leagueData = leagueData;
+    constructor(standings, topScorers) {
+        // this.leagueData = leagueData;
         this.standings = standings;
         this.topScorers = topScorers;
     }
@@ -52,8 +52,8 @@ class league {
         `
         <div class="row">
             <div class="col s12 header-league card blue-grey darken-3">
-                <h5>${this.leagueData.name}</h5>
-                <p>Area: ${this.leagueData.area.name}</p>
+                <h5>${this.standings.competition.name}</h5>
+                <p>Area: ${this.standings.competition.area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">

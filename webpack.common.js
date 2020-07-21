@@ -4,7 +4,7 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        sw: "./src/assets/services/sw.js",
+        sw: "./src/sw.js",
         index: "./src/index.js"
     },
     output: {

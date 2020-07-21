@@ -17,7 +17,6 @@ const registerServiceWorker = () => {
 
 const renderPremierLeague = () => {
     renderLeague(
-        premierLeague.general, 
         premierLeague.standings, 
         premierLeague.topScorers
     );
@@ -25,7 +24,7 @@ const renderPremierLeague = () => {
 
 const renderPrimeraDivision = () => {
     renderLeague(
-        primeraDivision.general,
+        // primeraDivision.general,
         primeraDivision.standings,
         primeraDivision.topScorers
     );
@@ -33,7 +32,7 @@ const renderPrimeraDivision = () => {
 
 const renderSerieA = () => {
     renderLeague(
-        serieA.general,
+        // serieA.general,
         serieA.standings,
         serieA.topScorers
     );

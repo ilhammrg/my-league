@@ -5,13 +5,12 @@ import preloader from '../components/preloader.component.js';
 import fallbackComponents from '../components/fallback.component.js';
 
 // Fetch and render league component
-const renderLeague = async (leagueUrl, standingUrl, scorersUrl) => {
+const renderLeague = async (standingUrl, scorersUrl) => {
     try {
         preloader();
-        const leagueData = await getLeagueData(leagueUrl);
         const standingData = await getLeagueData(standingUrl);
         const scorersData = await getLeagueData(scorersUrl);
-        const createLeagueElement = new league(leagueData, standingData, scorersData);
+        const createLeagueElement = new league(standingData, scorersData);
         createLeagueElement.render();
     } catch {
         fallbackComponents();

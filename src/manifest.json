@@ -1,8 +1,8 @@
 {
   "name": "My League",
   "short_name": "My League",
-  "theme_color": "#37003c",
-  "background_color": "#37003c",
+  "theme_color": "#455a64",
+  "background_color": "#455a64",
   "display": "standalone",
   "scope": "/",
   "orientation": "portrait",
