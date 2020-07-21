@@ -41,30 +41,28 @@ self.addEventListener("fetch", event => {
             .then(response => {
                 if (response) {
                     return response;
-                } 
+                } else if (event.request.url.indexOf(base_url_api) > -1) {
+                    caches.open(API_CACHE)
+                        .then(cache => 
+                            fetch(event.request)
+                            .then(response => {
+                                cache.put(event.request.url, response.clone());
+                                return response;
+                            })
+                        )
+                } else if (event.request.url.indexOf(base_url_logo) > -1) {
+                    caches.open(LOGO_CACHE)
+                        .then(cache => 
+                            fetch(event.request)
+                            .then(response => {
+                                cache.put(event.request.url, response.clone());
+                                return response;
+                            })
+                        )
+                }
                 return fetch(event.request);
         })
     );
-        
-    if (event.request.url.indexOf(base_url_api) > -1) {
-        caches.open(API_CACHE)
-            .then(cache => 
-                fetch(event.request)
-                .then(response => {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
-            )
-    } else if (event.request.url.indexOf(base_url_logo) > -1) {
-        caches.open(LOGO_CACHE)
-            .then(cache => 
-                fetch(event.request)
-                .then(response => {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
-            )
-    } 
 });
 
 // Delete outdated app shell cache

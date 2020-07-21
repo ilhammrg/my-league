@@ -4,8 +4,7 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: "./src/index.js",
-        sw: "./src/sw.js"
+        index: "./src/index.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -51,7 +50,8 @@ module.exports = {
         new copyWebpackPlugin({
                 patterns: [
                     { from: 'src/assets/icons', to: 'assets/icons' },
-                    { from: 'src/manifest.json', to: 'manifest.json' }
+                    { from: 'src/manifest.json', to: 'manifest.json' },
+                    { from: 'src/sw.js', to: 'sw.js'}
                 ]
         })
     ],
