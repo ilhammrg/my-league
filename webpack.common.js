@@ -53,6 +53,7 @@ module.exports = {
                     { from: 'src/assets/icons', to: 'assets/icons' },
                     { from: 'src/manifest.json', to: 'manifest.json' }
                 ]
-            })
-        ]
+        })
+    ],
+    devtool: 'inline-source-map'
 }
