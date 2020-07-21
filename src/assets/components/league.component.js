@@ -1,6 +1,5 @@
 class league {
     constructor(standings, topScorers) {
-        // this.leagueData = leagueData;
         this.standings = standings;
         this.topScorers = topScorers;
     }

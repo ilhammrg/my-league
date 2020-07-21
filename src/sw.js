@@ -36,9 +36,18 @@ self.addEventListener("fetch", event => {
     let base_url_api = "https://api.football-data.org/";
     let base_url_logo = "https://upload.wikimedia.org/";
 
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => {
+                if (response) {
+                    return response;
+                } 
+                return fetch(event.request);
+        })
+    );
+        
     if (event.request.url.indexOf(base_url_api) > -1) {
-        event.respondWith(
-            caches.open(API_CACHE)
+        caches.open(API_CACHE)
             .then(cache => 
                 fetch(event.request)
                 .then(response => {
@@ -46,10 +55,8 @@ self.addEventListener("fetch", event => {
                     return response;
                 })
             )
-        )
     } else if (event.request.url.indexOf(base_url_logo) > -1) {
-        event.respondWith(
-            caches.open(LOGO_CACHE)
+        caches.open(LOGO_CACHE)
             .then(cache => 
                 fetch(event.request)
                 .then(response => {
@@ -57,13 +64,7 @@ self.addEventListener("fetch", event => {
                     return response;
                 })
             )
-        )
-    } else {
-        event.respondWith(
-            caches.match(event.request, { ignoreSearch: true})
-            .then(response => response || fetch(event.request))
-        );
-    }
+    } 
 });
 
 // Delete outdated app shell cache

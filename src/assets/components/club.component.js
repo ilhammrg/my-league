@@ -24,7 +24,6 @@ class club {
     render() {
         const mainContainer = document.getElementById('main-content');
         const logoUrl = this.clubData.crestUrl.replace(/^http:\/\//i, 'https://');
-        console.log(logoUrl);
         mainContainer.innerHTML = '';
         mainContainer.innerHTML = `
         <div class="row">

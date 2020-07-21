@@ -24,7 +24,6 @@ const renderPremierLeague = () => {
 
 const renderPrimeraDivision = () => {
     renderLeague(
-        // primeraDivision.general,
         primeraDivision.standings,
         primeraDivision.topScorers
     );
@@ -32,7 +31,6 @@ const renderPrimeraDivision = () => {
 
 const renderSerieA = () => {
     renderLeague(
-        // serieA.general,
         serieA.standings,
         serieA.topScorers
     );
@@ -89,7 +87,7 @@ const App = () => {
         registerServiceWorker();
     }
 
-    handleUrlChange();
+    // handleUrlChange();
     handleButtonClicked();
 }
 
