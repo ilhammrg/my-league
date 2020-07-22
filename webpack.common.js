@@ -1,6 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const brotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -26,21 +27,19 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ['html-loader']
-            },
-            {
-                test: /\.(jpg|png)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'assets/icons',
-                            publicPath: 'assets/icons'
-                        }
-                    }
-                ],
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -53,7 +52,12 @@ module.exports = {
                     { from: 'src/manifest.json', to: 'manifest.json' },
                     { from: 'src/sw.js', to: 'sw.js'}
                 ]
+        }),
+        new brotliPlugin({
+            asset: '[path].br[query]',
+			test: /\.(js|css|html|svg)$/,
+			threshold: 10240,
+			minRatio: 0.8
         })
-    ],
-    devtool: 'inline-source-map'
+    ]
 }
