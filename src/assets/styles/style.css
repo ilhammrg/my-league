@@ -78,6 +78,10 @@ a {
     background-color: #b2ebf2;
 }
 
+.tabs-content {
+    height: 100vh !important;
+}
+
 .tabs-content.carousel { 
     height: 100%; 
     overflow-x:hidden; 
@@ -91,6 +95,12 @@ a {
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
     background-color: #263238;
+}
+
+.standing-club-logo {
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 /* Club page */

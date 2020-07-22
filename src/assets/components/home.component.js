@@ -2,6 +2,7 @@ const Home = () => {
     const mainContainer = document.getElementById('main-content');
     mainContainer.innerHTML = '';
     mainContainer.innerHTML = `
+    <div class="home-container">
         <div class="row">
             <div class="col s12 m6">
                 <div class="card hoverable home-nav-container red lighten-2">
@@ -29,8 +30,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col s12 m6">
                 <div class="card hoverable home-nav-container teal">
                     <div class="card-image">
@@ -59,6 +58,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+    </div>
     `;
 }
 

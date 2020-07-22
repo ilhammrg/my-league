@@ -7,13 +7,15 @@ class league {
     renderStandings() {
         let clubs = '';
         this.standings.standings[0].table.forEach(club => {
+            const logoUrl = club.team.crestUrl.replace(/^http:\/\//i, 'https://');
             clubs += `
                 <tr>
                     <td>${club.position}</td>
                     <td>
-                        <span>
-                           <a class="club-link" href="#teams/${club.team.id}" title="${club.team.name}" data-clubid="${club.team.id}">${club.team.name}</a>
-                        </span>
+                        <a class="club-link" href="#teams/${club.team.id}" title="${club.team.name} Profile">
+                            <img class="standing-club-logo" src="${logoUrl}" alt="club-logo">
+                            ${club.team.name}
+                        </a>
                     </td>
                     <td>${club.playedGames}</td>
                     <td>${club.won}</td>
@@ -52,7 +54,7 @@ class league {
         <div class="row">
             <div class="col s12 header-league card blue-grey darken-3">
                 <h5>${this.standings.competition.name}</h5>
-                <p>Area: ${this.standings.competition.area.name}</p>
+                <p>${this.standings.competition.area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">

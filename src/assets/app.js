@@ -36,28 +36,6 @@ const renderSerieA = () => {
     );
 }
 
-// Navbar button and sidebar button click event handler
-// const handleButtonClicked = () => {
-//     document.addEventListener('click', event => {
-//         const button = event.target;
-//         if (button.classList.contains('premier-league')) {
-//             renderPremierLeague();
-//         } else if (button.classList.contains('primera-division')) {
-//             renderPrimeraDivision();
-//         } else if (button.classList.contains('serie-a')) {
-//             renderSerieA();
-//         } else if (button.classList.contains('home')) {
-//             Home();
-//         } else if (button.classList.contains('saved-clubs')) {
-//             console.log('saved-clubs');
-//         } else if (button.classList.contains('club-link')) {
-//             const clubID = button.dataset.clubid;
-//             renderClub(urls.club, clubID);
-//         }
-//     });
-// }
-
-// Window url location change event handler
 const handleUrlChange = () => {
     window.addEventListener("hashchange", () => {
         const urlHash = window.location.hash;
@@ -87,8 +65,8 @@ const App = () => {
         registerServiceWorker();
     }
 
+    // Handle get request
     handleUrlChange();
-    // handleButtonClicked();
 }
 
 export default App;
