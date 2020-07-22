@@ -31,7 +31,7 @@ class club {
                 <div class="card club-card blue-grey darken-3">
                     <div class="card-image">
                         <img class="club-logo" src="${logoUrl}" alt="club-logo">
-                        <a class="save-button btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Save club">
+                        <a id="save" class="save-button btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Save club">
                             <i class="material-icons">add</i>
                         </a>
                     </div>

@@ -1,5 +1,7 @@
 import urls from './data-source/urls.js';
 import { renderLeague, renderClub } from './data-source/render-league.js';
+import { getClubPromised } from './data-source/get-league-data.js';
+import saveClub from './db/db.js';
 import Home from './components/home.component.js';
 
 const { premierLeague, primeraDivision, serieA } = urls;
@@ -36,8 +38,19 @@ const renderSerieA = () => {
     );
 }
 
+const handleSaveClub = (clubID) => {
+    const clubItem = getClubPromised(urls.club, clubID);
+    const saveButton = document.querySelector('.save-button');
+
+    saveButton.addEventListener('click', () => {
+        clubItem.then(club => {
+            saveClub(club);
+        })
+    });
+}
+
 const handleUrlChange = () => {
-    window.addEventListener("hashchange", () => {
+    window.addEventListener("hashchange", async () => {
         const urlHash = window.location.hash;
         if (urlHash.includes('premier-league')) {
             renderPremierLeague();
@@ -47,7 +60,8 @@ const handleUrlChange = () => {
             renderSerieA();
         } else if (urlHash.includes('teams')) {
             const clubID = window.location.hash.replace('#teams/', '');
-            renderClub(urls.club, clubID);
+            await renderClub(urls.club, clubID);
+            handleSaveClub(clubID);
         } else if (urlHash.includes('home')) {
             Home();
         } else if (urlHash.includes('saved-clubs')) {

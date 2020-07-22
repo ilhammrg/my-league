@@ -1,4 +1,4 @@
-import getLeagueData from './get-league-data.js';
+import { getLeagueData } from './get-league-data.js';
 import league from '../components/league.component.js';
 import club from '../components/club.component.js';
 import preloader from '../components/preloader.component.js';
