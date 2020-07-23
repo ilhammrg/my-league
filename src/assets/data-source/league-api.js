@@ -25,10 +25,10 @@ const getLeagueData = async url => {
         .catch(error => FallbackPage());
 }
 
-const getClubPromised = (url, clubId) => {
+const getClubPromised = (url) => {
     return new Promise ((resolve, reject) => {
         if ('caches' in window) {
-            caches.match(url+clubId)
+            caches.match(url)
                 .then(response => {
                     if (response) {
                         resolve(response.json());
@@ -37,7 +37,7 @@ const getClubPromised = (url, clubId) => {
                     }
                 });
         }
-        fetch(url+clubId, {
+        fetch(url, {
             method: 'GET',
             mode: 'cors',
             headers: {

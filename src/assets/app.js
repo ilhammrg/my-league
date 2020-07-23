@@ -1,11 +1,10 @@
-import urls from './data-source/urls.js';
-import { renderLeague, renderClub } from './data-source/render-league.js';
-import { getClubPromised } from './data-source/get-league-data.js';
+import { renderLeague, renderClub } from './data-source/league-render.js';
+import { getClubPromised } from './data-source/league-api.js';
 import { saveClub, deleteClub } from './db/db.js';
 import HomePage from './pages/home.page.js';
 import SavedClubsPage from './pages/saved-clubs.page.js';
 
-const { premierLeague, primeraDivision, serieA } = urls;
+const baseUrl = 'https://api.football-data.org/v2/';
 
 const registerServiceWorker = () => {
     return navigator.serviceWorker.register('./sw.js')
@@ -36,29 +35,8 @@ const requestPermission = () => {
     }
 }
 
-const getPremierLeagueData = () => {
-    renderLeague(
-        premierLeague.standings, 
-        premierLeague.topScorers
-    );
-}
-
-const getPrimeraDivisionData = () => {
-    renderLeague(
-        primeraDivision.standings,
-        primeraDivision.topScorers
-    );
-}
-
-const getSerieAData = () => {
-    renderLeague(
-        serieA.standings,
-        serieA.topScorers
-    );
-}
-
-const handleSaveClub = (clubID) => {
-    const clubItem = getClubPromised(urls.club, clubID);
+const handleSaveClub = (clubUrl) => {
+    const clubItem = getClubPromised(clubUrl);
     const saveButton = document.querySelector('.save-button');
 
     saveButton.addEventListener('click', () => {
@@ -79,25 +57,41 @@ const handleDeleteClub = () => {
     })
 }
 
+const urlIdCorrection = urlHash => {
+    return urlHash.replace('#', '');
+}
+
+const getLeagueInformation = (hash, url) => {
+    const leagueId = urlIdCorrection(hash);
+    renderLeague(url + leagueId + '/standings', url + leagueId + '/scorers');
+}
+
 const handleUrlChange = () => {
     window.addEventListener("hashchange", async () => {
         const urlHash = window.location.hash;
-        if (urlHash.includes('premier-league')) {
-            getPremierLeagueData();
-        } else if (urlHash.includes('primera-division')) {
-            getPrimeraDivisionData();
-        } else if (urlHash.includes('serie-a')) {
-            getSerieAData();
-        } else if (urlHash.includes('teams')) {
-            const clubID = window.location.hash.replace('#teams/', '');
-            await renderClub(urls.club, clubID);
-            handleSaveClub(clubID);
-        } else if (urlHash.includes('home')) {
-            HomePage();
-        } else if (urlHash.includes('saved-clubs')) {
-            const createSavedClubsElement = new SavedClubsPage();
-            createSavedClubsElement.render();
-            handleDeleteClub();
+        switch(true) {
+            case (urlHash.includes('competitions/2021')):
+                getLeagueInformation(window.location.hash, baseUrl)
+                break;
+            case (urlHash.includes('competitions/2014')):
+                getLeagueInformation(window.location.hash, baseUrl);
+                break;
+            case (urlHash.includes('competitions/2019')):
+                getLeagueInformation(window.location.hash, baseUrl);
+                break;
+            case (urlHash.includes('teams')):
+                const clubID = urlIdCorrection(window.location.hash);
+                await renderClub(baseUrl + clubID);
+                handleSaveClub(baseUrl + clubID);
+                break;
+            case (urlHash.includes('home')):
+                HomePage();
+                break;
+            case (urlHash.includes('saved-clubs')):
+                const createSavedClubsElement = new SavedClubsPage();
+                createSavedClubsElement.render();
+                handleDeleteClub();
+                break;
         }
     });
 }

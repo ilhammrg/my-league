@@ -8,8 +8,8 @@ const HomePage = () => {
                 <div class="card hoverable home-nav-container red lighten-2">
                     <div class="card-image">
                         <a 
-                            class="premier-league home-nav-button" 
-                            href="#premier-league"
+                            class="home-nav-button" 
+                            href="#competitions/2021"
                             style="background-image: url('https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg');"
                             title="Premier League"
                         >      
@@ -21,8 +21,8 @@ const HomePage = () => {
                 <div class="card hoverable home-nav-container yellow lighten-3">
                     <div class="card-image">
                         <a 
-                            class="primera-division home-nav-button"
-                            href="#primera-division"
+                            class="home-nav-button"
+                            href="#competitions/2014"
                             style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg');"
                             title="Primera Division"
                         >
@@ -34,8 +34,8 @@ const HomePage = () => {
                 <div class="card hoverable home-nav-container teal">
                     <div class="card-image">
                         <a 
-                            class="serie-a home-nav-button"
-                            href="#serie-a"
+                            class="home-nav-button"
+                            href="#competitions/2019"
                             style="background-image: url('https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg');"
                             title="Serie A"
                         >

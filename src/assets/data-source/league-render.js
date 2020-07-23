@@ -1,4 +1,4 @@
-import { getLeagueData } from './get-league-data.js';
+import { getLeagueData } from './league-api.js';
 import LeaguePage from '../pages/league.page.js';
 import ClubPage from '../pages/club.page.js';
 import Preloader from '../components/preloader.component.js';
@@ -18,10 +18,10 @@ const renderLeague = async (standingUrl, scorersUrl) => {
 }
 
 // Fetch and render club component
-const renderClub = async (clubUrl, clubId) => {
+const renderClub = async (clubUrl) => {
     try {
         Preloader();
-        const clubData = await getLeagueData(clubUrl + clubId);
+        const clubData = await getLeagueData(clubUrl);
         const createClubElement = new ClubPage(clubData);
         createClubElement.render();
     } catch {
