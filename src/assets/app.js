@@ -17,6 +17,24 @@ const registerServiceWorker = () => {
         });
 }
 
+const requestPermission = () => {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(result => {
+            switch(result) {
+                case('granted'):
+                    console.log('Notification: Allowed.');
+                    break;
+                case('denied'):
+                    console.log('Notification: Disabled.');
+                    break;
+                case('default'):
+                    console.log('Notification: Permission dialog closed.');
+                    break;
+            }    
+        });
+    }
+}
+
 const renderPremierLeague = () => {
     renderLeague(
         premierLeague.standings, 
@@ -77,6 +95,7 @@ const App = () => {
         console.error("This browser does not support Service Worker");
     } else {
         registerServiceWorker();
+        requestPermission();
     }
 
     // Handle get request
