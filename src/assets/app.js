@@ -2,9 +2,8 @@ import urls from './data-source/urls.js';
 import { renderLeague, renderClub } from './data-source/render-league.js';
 import { getClubPromised } from './data-source/get-league-data.js';
 import saveClub from './db/db.js';
-import Home from './components/home.component.js';
-import SavedClub from './components/saved-clubs.components.js';
-import SavedClubs from './components/saved-clubs.components.js';
+import HomePage from './components/home.component.js';
+import SavedClubsPage from './components/saved-clubs.component.js';
 
 const { premierLeague, primeraDivision, serieA } = urls;
 
@@ -37,21 +36,21 @@ const requestPermission = () => {
     }
 }
 
-const renderPremierLeague = () => {
+const getPremierLeagueData = () => {
     renderLeague(
         premierLeague.standings, 
         premierLeague.topScorers
     );
 }
 
-const renderPrimeraDivision = () => {
+const getPrimeraDivisionData = () => {
     renderLeague(
         primeraDivision.standings,
         primeraDivision.topScorers
     );
 }
 
-const renderSerieA = () => {
+const getSerieAData = () => {
     renderLeague(
         serieA.standings,
         serieA.topScorers
@@ -73,19 +72,19 @@ const handleUrlChange = () => {
     window.addEventListener("hashchange", async () => {
         const urlHash = window.location.hash;
         if (urlHash.includes('premier-league')) {
-            renderPremierLeague();
+            getPremierLeagueData();
         } else if (urlHash.includes('primera-division')) {
-            renderPrimeraDivision();
+            getPrimeraDivisionData();
         } else if (urlHash.includes('serie-a')) {
-            renderSerieA();
+            getSerieAData();
         } else if (urlHash.includes('teams')) {
             const clubID = window.location.hash.replace('#teams/', '');
             await renderClub(urls.club, clubID);
             handleSaveClub(clubID);
         } else if (urlHash.includes('home')) {
-            Home();
+            HomePage();
         } else if (urlHash.includes('saved-clubs')) {
-            SavedClubs();
+            SavedClubsPage();
         }
     });
 }

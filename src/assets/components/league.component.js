@@ -1,12 +1,12 @@
-class league {
-    constructor(standings, topScorers) {
-        this.standings = standings;
-        this.topScorers = topScorers;
+class LeaguePage {
+    constructor(standingData, scorersData) {
+        this._standingData = standingData;
+        this._scorersData = scorersData;
     }
 
     renderStandings() {
         let clubs = '';
-        this.standings.standings[0].table.forEach(club => {
+        this._standingData.standings[0].table.forEach(club => {
             const logoUrl = club.team.crestUrl.replace(/^http:\/\//i, 'https://');
             clubs += `
                 <tr>
@@ -33,7 +33,7 @@ class league {
 
     renderTopScorers() {
         let players = '';
-        this.topScorers.scorers.forEach(player => {
+        this._scorersData.scorers.forEach(player => {
             players += `
                 <tr>
                     <td>${player.player.name}</td>
@@ -53,8 +53,8 @@ class league {
         `
         <div class="row">
             <div class="col s12 header-league card blue-grey darken-3">
-                <h5>${this.standings.competition.name}</h5>
-                <p>${this.standings.competition.area.name}</p>
+                <h5>${this._standingData.competition.name}</h5>
+                <p>${this._standingData.competition.area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">
@@ -63,7 +63,7 @@ class league {
                 </ul>
             </div>
             <div id="standings" class="col s12">
-                <p>Last Updated: ${this.standings.competition.lastUpdated}</p>
+                <p>Last Updated: ${this._standingData.competition.lastUpdated}</p>
                 <table class="highlight centered">
                     <thead>
                         <tr>
@@ -87,7 +87,7 @@ class league {
                 </table>
             </div>
             <div id="top-scorers" class="col s12">
-                <p>Last Updated: ${this.topScorers.competition.lastUpdated}</p>
+                <p>Last Updated: ${this._scorersData.competition.lastUpdated}</p>
                 <table class="highlight centered">
                     <thead>
                         <tr>
@@ -109,4 +109,4 @@ class league {
     }
 }
 
-export default league;
+export default LeaguePage;

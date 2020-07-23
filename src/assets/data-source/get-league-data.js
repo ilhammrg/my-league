@@ -1,4 +1,4 @@
-import fallbackComponents from "../components/fallback.component";
+import FallbackPage from "../components/fallback.component";
 
 const tokenAPI = '0d08af0570034b03a525c4af84529e5c';
 
@@ -22,7 +22,7 @@ const getLeagueData = url => {
     })
         .then(response => response.json())
         .then(data => data)
-        .catch(error => fallbackComponents());
+        .catch(error => FallbackPage());
 }
 
 const getClubPromised = (url, clubId) => {

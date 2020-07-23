@@ -1,4 +1,4 @@
-const SavedClubs = () => {
+const SavedClubsPage = () => {
     const mainContainer = document.getElementById('main-content');
     mainContainer.innerHTML = '';
     mainContainer.innerHTML = `
@@ -63,4 +63,4 @@ const SavedClubs = () => {
     `;
 }
 
-export default SavedClubs;
+export default SavedClubsPage;

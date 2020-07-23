@@ -1,8 +1,8 @@
 import { getLeagueData } from './get-league-data.js';
-import league from '../components/league.component.js';
-import club from '../components/club.component.js';
+import LeaguePage from '../components/league.component.js';
+import ClubPage from '../components/club.component.js';
 import preloader from '../components/preloader.component.js';
-import fallbackComponents from '../components/fallback.component.js';
+import FallbackPage from '../components/fallback.component.js';
 
 // Fetch and render league component
 const renderLeague = async (standingUrl, scorersUrl) => {
@@ -10,10 +10,10 @@ const renderLeague = async (standingUrl, scorersUrl) => {
         preloader();
         const standingData = await getLeagueData(standingUrl);
         const scorersData = await getLeagueData(scorersUrl);
-        const createLeagueElement = new league(standingData, scorersData);
+        const createLeagueElement = new LeaguePage(standingData, scorersData);
         createLeagueElement.render();
     } catch {
-        fallbackComponents();
+        FallbackPage();
     }
 }
 
@@ -22,10 +22,10 @@ const renderClub = async (clubUrl, clubId) => {
     try {
         preloader();
         const clubData = await getLeagueData(clubUrl + clubId);
-        const createClubElement = new club(clubData);
+        const createClubElement = new ClubPage(clubData);
         createClubElement.render();
     } catch {
-        fallbackComponents();
+        FallbackPage();
     }
 }
 

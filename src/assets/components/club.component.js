@@ -1,11 +1,11 @@
-class club {
+class ClubPage {
     constructor(clubData) {
-        this.clubData = clubData;
+        this._clubData = clubData;
     }
 
     renderSquads() {
         let squads = '';
-        this.clubData.squad.forEach(player => {
+        this._clubData.squad.forEach(player => {
             let { shirtNumber, name, position, nationality, role } = player;
             if (shirtNumber == null) shirtNumber = '-';
             if (position == null) position = role;
@@ -23,7 +23,7 @@ class club {
 
     render() {
         const mainContainer = document.getElementById('main-content');
-        const logoUrl = this.clubData.crestUrl.replace(/^http:\/\//i, 'https://');
+        const logoUrl = this._clubData.crestUrl.replace(/^http:\/\//i, 'https://');
         mainContainer.innerHTML = '';
         mainContainer.innerHTML = `
         <div class="row">
@@ -36,22 +36,22 @@ class club {
                         </a>
                     </div>
                     <div class="card-content">
-                        <h5>${this.clubData.name}</h5>
+                        <h5>${this._clubData.name}</h5>
                         <div>
                             <i class="material-icons">view_list</i>
-                            <span>${this.clubData.activeCompetitions[0].name}</span>
+                            <span>${this._clubData.activeCompetitions[0].name}</span>
                         </div>
                         <div>
                             <i class="material-icons">home</i>
-                            <span>${this.clubData.venue}</span>
+                            <span>${this._clubData.venue}</span>
                         </div>
                         <div>
                             <i class="material-icons">link</i>
-                            <a href="${this.clubData.website}" target="_blank">${this.clubData.website}</a>
+                            <a href="${this._clubData.website}" target="_blank">${this._clubData.website}</a>
                         </div>
                     </div>
                     <div class="card-action">
-                        <span>Last Updated: ${this.clubData.lastUpdated}</span>
+                        <span>Last Updated: ${this._clubData.lastUpdated}</span>
                     </div>
                 </div>
             </div>
@@ -74,4 +74,4 @@ class club {
     }
 }
 
-export default club;
+export default ClubPage;

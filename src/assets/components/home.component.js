@@ -1,4 +1,4 @@
-const Home = () => {
+const HomePage = () => {
     const mainContainer = document.getElementById('main-content');
     mainContainer.innerHTML = '';
     mainContainer.innerHTML = `
@@ -62,4 +62,4 @@ const Home = () => {
     `;
 }
 
-export default Home;
+export default HomePage;

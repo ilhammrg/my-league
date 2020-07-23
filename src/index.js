@@ -6,12 +6,12 @@ import Navbar from './assets/components/navbar.component.js';
 import Sidebar from './assets/components/sidebar.component.js';
 import Footer from './assets/components/footer.component.js';
 import App from "./assets/app.js";
-import Home from "./assets/components/home.component.js";
+import HomePage from "./assets/components/home.component.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     Navbar();
     Sidebar();
     Footer();
-    Home();
+    HomePage();
     App();
 });

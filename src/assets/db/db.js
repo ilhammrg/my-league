@@ -19,7 +19,7 @@ const saveClub = (club) => {
             M.toast({html: 'Added to Saved Clubs!'});
         })
         .catch(error => {
-            M.toast({html: 'Already saved.'});
+            M.toast({html: 'Unable to save duplicate club!'});
         });
 }
 
