@@ -1,10 +1,10 @@
-import FallbackPage from "../components/fallback.component";
+import FallbackPage from "../pages/fallback.page.js";
 
 const tokenAPI = '0d08af0570034b03a525c4af84529e5c';
 
-const getLeagueData = url => {
+const getLeagueData = async url => {
     if ('caches' in window) {
-        caches.match(url)
+        await caches.match(url)
             .then(response => {
                 if (response) {
                     return response.json();

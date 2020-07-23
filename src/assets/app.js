@@ -1,9 +1,9 @@
 import urls from './data-source/urls.js';
 import { renderLeague, renderClub } from './data-source/render-league.js';
 import { getClubPromised } from './data-source/get-league-data.js';
-import saveClub from './db/db.js';
-import HomePage from './components/home.component.js';
-import SavedClubsPage from './components/saved-clubs.component.js';
+import { saveClub, deleteClub } from './db/db.js';
+import HomePage from './pages/home.page.js';
+import SavedClubsPage from './pages/saved-clubs.page.js';
 
 const { premierLeague, primeraDivision, serieA } = urls;
 
@@ -68,6 +68,17 @@ const handleSaveClub = (clubID) => {
     });
 }
 
+const handleDeleteClub = () => {
+    document.addEventListener('click', element => {
+        const deleteButton = element.target;
+        if (deleteButton.classList.contains('remove-button')) {
+            const keyPath = deleteButton.dataset.keypath;
+            console.log(keyPath);
+            deleteClub(keyPath);
+        }
+    })
+}
+
 const handleUrlChange = () => {
     window.addEventListener("hashchange", async () => {
         const urlHash = window.location.hash;
@@ -84,7 +95,9 @@ const handleUrlChange = () => {
         } else if (urlHash.includes('home')) {
             HomePage();
         } else if (urlHash.includes('saved-clubs')) {
-            SavedClubsPage();
+            const createSavedClubsElement = new SavedClubsPage();
+            createSavedClubsElement.render();
+            handleDeleteClub();
         }
     });
 }

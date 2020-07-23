@@ -1,13 +1,13 @@
 import { getLeagueData } from './get-league-data.js';
-import LeaguePage from '../components/league.component.js';
-import ClubPage from '../components/club.component.js';
-import preloader from '../components/preloader.component.js';
-import FallbackPage from '../components/fallback.component.js';
+import LeaguePage from '../pages/league.page.js';
+import ClubPage from '../pages/club.page.js';
+import Preloader from '../components/preloader.component.js';
+import FallbackPage from '../pages/fallback.page.js';
 
 // Fetch and render league component
 const renderLeague = async (standingUrl, scorersUrl) => {
     try {
-        preloader();
+        Preloader();
         const standingData = await getLeagueData(standingUrl);
         const scorersData = await getLeagueData(scorersUrl);
         const createLeagueElement = new LeaguePage(standingData, scorersData);
@@ -20,7 +20,7 @@ const renderLeague = async (standingUrl, scorersUrl) => {
 // Fetch and render club component
 const renderClub = async (clubUrl, clubId) => {
     try {
-        preloader();
+        Preloader();
         const clubData = await getLeagueData(clubUrl + clubId);
         const createClubElement = new ClubPage(clubData);
         createClubElement.render();

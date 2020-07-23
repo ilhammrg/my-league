@@ -1,4 +1,4 @@
-const preloader = () => {
+const Preloader = () => {
     const mainContainer = document.getElementById('main-content');
     mainContainer.innerHTML = ``;
     mainContainer.innerHTML = 
@@ -19,4 +19,4 @@ const preloader = () => {
     `;
 }
 
-export default preloader;
+export default Preloader;

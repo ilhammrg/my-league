@@ -1,10 +1,7 @@
 import idb from './idb.js';
 
-let dbPromised = idb.open('my-league', 1, upgradeDb => {
-    let clubsObjectStore = upgradeDb.createObjectStore('clubs', {
-        keyPath: 'id'
-    });
-    clubsObjectStore.createIndex('name', 'name', { unique: true });
+const dbPromised = idb.open('my-league', 1, upgradeDb => {
+    upgradeDb.createObjectStore('clubs', {keyPath: 'id'});
 });
 
 const saveClub = (club) => {
@@ -23,4 +20,31 @@ const saveClub = (club) => {
         });
 }
 
-export default saveClub;
+const getAllClubs = () => {
+    return new Promise((resolve, reject) => {
+        dbPromised
+            .then(db => {
+                const tx = db.transaction('clubs', 'readonly');
+                const store = tx.objectStore('clubs');
+                return store.getAll();
+            })
+            .then(clubs => {
+                resolve(clubs);
+            });
+    });
+}
+
+const deleteClub = (key) => {
+    dbPromised
+        .then(db => {
+            const tx = db.transaction(['clubs'], 'readwrite');
+            const store = tx.objectStore('clubs');
+            store.delete(key);
+            return tx.complete;
+        })
+        .then(() => {
+            M.toast({html: 'Club removed!'});
+        });
+}
+
+export { saveClub, getAllClubs, deleteClub };
