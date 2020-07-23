@@ -3,6 +3,8 @@ import { renderLeague, renderClub } from './data-source/render-league.js';
 import { getClubPromised } from './data-source/get-league-data.js';
 import saveClub from './db/db.js';
 import Home from './components/home.component.js';
+import SavedClub from './components/saved-clubs.components.js';
+import SavedClubs from './components/saved-clubs.components.js';
 
 const { premierLeague, primeraDivision, serieA } = urls;
 
@@ -83,7 +85,7 @@ const handleUrlChange = () => {
         } else if (urlHash.includes('home')) {
             Home();
         } else if (urlHash.includes('saved-clubs')) {
-            console.log('saved-clubs')
+            SavedClubs();
         }
     });
 }

@@ -30,8 +30,8 @@ a {
 
 /* Main content */
 #main-content {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     flex: 1 0 auto;
 }
 
@@ -116,6 +116,24 @@ a {
 .club-logo {
     vertical-align: middle;
     max-height: 220px;
+}
+
+/* Saved club page */
+.saved-club-container {
+    margin-bottom: 15px;
+}
+
+.saved-club-card {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.saved-detail-button {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 170px 170px;
+    min-height: 200px;
 }
 
 /* Footer */
