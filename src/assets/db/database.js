@@ -21,10 +21,10 @@ async function getAllClubs() {
 async function insertClub(club) {
     const openDatabase = await openDB('my-league', 1);
     openDatabase.add('clubs', club)
-        .then(result => {
+        .then( () => {
             M.toast({html: 'Club saved!'});
         })
-        .catch(err => {
+        .catch( () => {
             M.toast({html: 'Unable to save duplicate club!'});
         });
 }

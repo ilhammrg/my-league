@@ -1,6 +1,7 @@
 {
   "name": "My League",
   "short_name": "My League",
+  "gcm_sender_id": "687032362628",
   "theme_color": "#455a64",
   "background_color": "#455a64",
   "display": "standalone",

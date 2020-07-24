@@ -8,24 +8,25 @@ class LeaguePage {
     renderStandings() {
         let clubs = '';
         this._standingData.standings[0].table.forEach(club => {
-            const logoUrl = club.team.crestUrl.replace(/^http:\/\//i, 'https://');
+            const { position, team, playedGames, won, draw, lost, goalsFor, goalsAgainst, goalDifference, points } = club;
+            const logoUrl = team.crestUrl.replace(/^http:\/\//i, 'https://');
             clubs += `
                 <tr>
-                    <td>${club.position}</td>
+                    <td>${position}</td>
                     <td>
-                        <a class="club-link" href="#teams/${club.team.id}" title="${club.team.name} Profile">
+                        <a class="club-link" href="#teams/${team.id}" title="${team.name} Profile">
                             <img class="standing-club-logo" src="${logoUrl}" alt="club-logo">
-                            ${club.team.name}
+                            ${team.name}
                         </a>
                     </td>
-                    <td>${club.playedGames}</td>
-                    <td>${club.won}</td>
-                    <td>${club.draw}</td>
-                    <td>${club.lost}</td>
-                    <td class="hide-on-small-only">${club.goalsFor}</td>
-                    <td class="hide-on-small-only">${club.goalsAgainst}</td>
-                    <td class="hide-on-small-only">${club.goalDifference}</td>
-                    <td>${club.points}</td>
+                    <td>${playedGames}</td>
+                    <td>${won}</td>
+                    <td>${draw}</td>
+                    <td>${lost}</td>
+                    <td class="hide-on-small-only">${goalsFor}</td>
+                    <td class="hide-on-small-only">${goalsAgainst}</td>
+                    <td class="hide-on-small-only">${goalDifference}</td>
+                    <td>${points}</td>
                 </tr>
             `;
         });
@@ -34,13 +35,14 @@ class LeaguePage {
 
     renderTopScorers() {
         let players = '';
-        this._scorersData.scorers.forEach(player => {
+        this._scorersData.scorers.forEach(scorer => {
+            const { player, team, numberOfGoals  } = scorer;
             players += `
                 <tr>
-                    <td>${player.player.name}</td>
-                    <td class="hide-on-small-only">${player.player.position}</td>
-                    <td>${player.team.name}</td>
-                    <td>${player.numberOfGoals}</td>
+                    <td>${player.name}</td>
+                    <td class="hide-on-small-only">${player.position}</td>
+                    <td>${team.name}</td>
+                    <td>${numberOfGoals}</td>
                 </tr>
             `;
         });
@@ -48,14 +50,14 @@ class LeaguePage {
     }
 
     render() {
-        // const mainContainer = document.getElementById('main-content');
+        const { name, area, lastUpdated } = this._standingData.competition;
         this.mainContainer.innerHTML = ``;
         this.mainContainer.innerHTML = 
         `
         <div class="row">
             <div class="col s12 header-league card blue-grey darken-3">
-                <h5>${this._standingData.competition.name}</h5>
-                <p>${this._standingData.competition.area.name}</p>
+                <h5>${name}</h5>
+                <p>${area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">
@@ -64,7 +66,7 @@ class LeaguePage {
                 </ul>
             </div>
             <div id="standings" class="col s12">
-                <p>Last Updated: ${this._standingData.competition.lastUpdated}</p>
+                <p>Last Updated: ${lastUpdated}</p>
                 <table class="highlight centered">
                     <thead>
                         <tr>

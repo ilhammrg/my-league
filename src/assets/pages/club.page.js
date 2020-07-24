@@ -7,9 +7,11 @@ class ClubPage {
     renderSquads() {
         let squads = '';
         this._clubData.squad.forEach(player => {
-            let { shirtNumber, name, position, nationality, role } = player;
-            if (shirtNumber == null) shirtNumber = '-';
-            if (position == null) position = role;
+            let { shirtNumber, name, position, nationality } = player;
+            // if (shirtNumber == null) shirtNumber = '-';
+            shirtNumber = (shirtNumber == null) ? '-' : shirtNumber;
+            // if (position == null) position = role;
+            position = (position == null) ? 'Coach' : position;
             squads += `
             <tr>
                 <td>${shirtNumber}</td>
@@ -23,8 +25,8 @@ class ClubPage {
     }
 
     render() {
-        // const mainContainer = document.getElementById('main-content');
-        const logoUrl = this._clubData.crestUrl.replace(/^http:\/\//i, 'https://');
+        const { name, activeCompetitions, venue, website, lastUpdated, crestUrl } = this._clubData;
+        const logoUrl = crestUrl.replace(/^http:\/\//i, 'https://');
         this.mainContainer.innerHTML = '';
         this.mainContainer.innerHTML = `
         <div class="row">
@@ -37,22 +39,22 @@ class ClubPage {
                         </a>
                     </div>
                     <div class="card-content">
-                        <h5>${this._clubData.name}</h5>
+                        <h5>${name}</h5>
                         <div>
                             <i class="material-icons">view_list</i>
-                            <span>${this._clubData.activeCompetitions[0].name}</span>
+                            <span>${activeCompetitions[0].name}</span>
                         </div>
                         <div>
                             <i class="material-icons">home</i>
-                            <span>${this._clubData.venue}</span>
+                            <span>${venue}</span>
                         </div>
                         <div>
                             <i class="material-icons">link</i>
-                            <a href="${this._clubData.website}" target="_blank">${this._clubData.website}</a>
+                            <a href="${website}" target="_blank" rel="noreferrer">${website}</a>
                         </div>
                     </div>
                     <div class="card-action">
-                        <span>Last Updated: ${this._clubData.lastUpdated}</span>
+                        <span>Last Updated: ${lastUpdated}</span>
                     </div>
                 </div>
             </div>

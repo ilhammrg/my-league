@@ -6,19 +6,20 @@ class SavedClubsPage {
     render(clubs) {
         let savedClubsElement = '';
         clubs.forEach(club => {
-            const logoUrl = club.crestUrl.replace(/^http:\/\//i, 'https://');
+            const { id, shortName, crestUrl } = club;
+            const logoUrl = crestUrl.replace(/^http:\/\//i, 'https://');
             savedClubsElement += `
             <div class="col s12 m6 l4 saved-club-container">
                 <div class="card hoverable saved-club-card blue-grey darken-3">
                     <a 
                     class="saved-detail-button" 
-                    href="#teams/${club.id}"
+                    href="#teams/${id}"
                     style="background-image: url('${logoUrl}');"
-                    title="View ${club.shortName} details"
+                    title="View ${shortName} details"
                     >      
                     </a>
                     <a class="btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Remove club">
-                        <i class="remove-button material-icons" data-keypath="${club.id}">delete</i>
+                        <i class="remove-button material-icons" data-keypath="${id}">delete</i>
                     </a>
                 </div>
             </div>
@@ -33,8 +34,10 @@ class SavedClubsPage {
     renderEmpty() {
         this.mainContainer.innerHTML = '';
         this.mainContainer.innerHTML = `
-        <div class="center">
-            <h6>No saved clubs yet.</h6>
+        <div class="row">
+            <div class="center col s12">
+                <h6>No saved clubs yet.</h6>
+            </div>
         </div>
         `;
     }

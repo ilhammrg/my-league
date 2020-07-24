@@ -2,11 +2,25 @@ const APPSHELL_CACHE = 'my-league-app-shell-v1';
 const API_CACHE = 'my-league-api-v1';
 const LOGO_CACHE = 'my-league-logo-v1';
 
-let urlsToCache = [
+let commons = [
     "/",
     "/index.html",
     "/index.bundle.js",
-    "/manifest.json",
+    "/manifest.json"
+]
+
+let fonts = [
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap"
+]
+
+let logo = [
+    "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg",
+    "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
+]
+
+let icons = [
     "/assets/icons/icon-72x72.png",
     "/assets/icons/icon-96x96.png",
     "/assets/icons/icon-128x128.png",
@@ -14,24 +28,18 @@ let urlsToCache = [
     "/assets/icons/icon-152x152.png",
     "/assets/icons/icon-192x192.png",
     "/assets/icons/icon-384x384.png",
-    "/assets/icons/icon-512x512.png",
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap",
-    "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg",
-    "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
+    "/assets/icons/icon-512x512.png"
 ]
 
-// Load app shell to cache
-self.addEventListener("install", event => 
+// Caching app-shell
+self.addEventListener("install", event => {
     event.waitUntil(
-        caches
-        .open(APPSHELL_CACHE)
-        .then(cache => cache.addAll(urlsToCache))
-    )
-);
+        caches.open(APPSHELL_CACHE)
+            .then(cache => cache.addAll(commons, fonts, logo, icons))
+    );
+});
 
-// Load fetched Urls to cache
+// Intercept fetch
 self.addEventListener("fetch", event => {
     let base_url_api = "https://api.football-data.org/";
     let base_url_logo = "https://upload.wikimedia.org/";
@@ -65,7 +73,7 @@ self.addEventListener("fetch", event => {
     );
 });
 
-// Delete outdated app shell cache
+// Delete outdated app-shell
 self.addEventListener("activate", event => {
     event.waitUntil(
         caches.keys()
@@ -78,5 +86,27 @@ self.addEventListener("activate", event => {
                 })
             )
         )
+    );
+});
+
+// Push notification handler
+self.addEventListener('push', event => {
+    let body;
+    if (event.data) {
+      body = event.data.text();
+    } else {
+      body = 'Push message no payload';
+    }
+    const options = {
+      body: body,
+      icon: 'assets/icons/icon-72x72.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1
+      }
+    };
+    event.waitUntil(
+      self.registration.showNotification('Push Notification', options)
     );
 });
