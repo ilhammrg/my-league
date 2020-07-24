@@ -1,13 +1,13 @@
 import { renderLeague, renderClub } from './data-source/league-render.js';
 import { getClubPromised } from './data-source/league-api.js';
-import { saveClub, deleteClub } from './db/db.js';
+import { insertClub, deleteClub, createDB, getAllClubs } from './db/database.js';
 import HomePage from './pages/home.page.js';
 import SavedClubsPage from './pages/saved-clubs.page.js';
 
 const baseUrl = 'https://api.football-data.org/v2/';
 
-const registerServiceWorker = () => {
-    return navigator.serviceWorker.register('./sw.js')
+const registerServiceWorker = async () => {
+    return await navigator.serviceWorker.register('./sw.js')
         .then(registration => {
             console.log('Service-worker: Register success.');
             return registration;
@@ -35,26 +35,36 @@ const requestPermission = () => {
     }
 }
 
-const handleSaveClub = (clubUrl) => {
+const handleSaveClub = clubUrl => {
     const clubItem = getClubPromised(clubUrl);
     const saveButton = document.querySelector('.save-button');
 
     saveButton.addEventListener('click', () => {
         clubItem.then(club => {
-            saveClub(club);
-        })
+            insertClub(club);
+        });
     });
 }
 
-const handleDeleteClub = () => {
-    document.addEventListener('click', element => {
-        const deleteButton = element.target;
-        if (deleteButton.classList.contains('remove-button')) {
-            const keyPath = deleteButton.dataset.keypath;
-            console.log(keyPath);
-            deleteClub(keyPath);
-        }
-    })
+function getSavedClubs() {
+    getAllClubs().then(clubs => {
+        if (clubs.length == 0) {
+            const savedClubsElement = new SavedClubsPage();
+            savedClubsElement.renderEmpty();
+        } else {
+            const savedClubsElement = new SavedClubsPage();
+            savedClubsElement.render(clubs);
+            let removeButton = document.querySelectorAll('.remove-button');
+            for (let button of removeButton) {
+                button.addEventListener('click', function(event) {
+                    let keyPath = parseInt(event.target.dataset.keypath);
+                    deleteClub(keyPath).then(() => {
+                        getSavedClubs();
+                    });
+                });
+            }
+        } 
+    });
 }
 
 const urlIdCorrection = urlHash => {
@@ -88,9 +98,7 @@ const handleUrlChange = () => {
                 HomePage();
                 break;
             case (urlHash.includes('saved-clubs')):
-                const createSavedClubsElement = new SavedClubsPage();
-                createSavedClubsElement.render();
-                handleDeleteClub();
+                getSavedClubs();
                 break;
         }
     });
@@ -105,6 +113,9 @@ const App = () => {
         registerServiceWorker();
         requestPermission();
     }
+
+    // Initiate database
+    createDB();
 
     // Handle get request
     handleUrlChange();

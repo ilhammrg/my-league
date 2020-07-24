@@ -1,6 +1,7 @@
 class ClubPage {
     constructor(clubData) {
         this._clubData = clubData;
+        this.mainContainer = document.getElementById('main-content');
     }
 
     renderSquads() {
@@ -22,10 +23,10 @@ class ClubPage {
     }
 
     render() {
-        const mainContainer = document.getElementById('main-content');
+        // const mainContainer = document.getElementById('main-content');
         const logoUrl = this._clubData.crestUrl.replace(/^http:\/\//i, 'https://');
-        mainContainer.innerHTML = '';
-        mainContainer.innerHTML = `
+        this.mainContainer.innerHTML = '';
+        this.mainContainer.innerHTML = `
         <div class="row">
             <div class="col s12 m6 offset-m3 l4">
                 <div class="card club-card blue-grey darken-3">

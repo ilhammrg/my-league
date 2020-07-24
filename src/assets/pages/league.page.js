@@ -2,6 +2,7 @@ class LeaguePage {
     constructor(standingData, scorersData) {
         this._standingData = standingData;
         this._scorersData = scorersData;
+        this.mainContainer = document.getElementById('main-content');
     }
 
     renderStandings() {
@@ -47,9 +48,9 @@ class LeaguePage {
     }
 
     render() {
-        const mainContainer = document.getElementById('main-content');
-        mainContainer.innerHTML = ``;
-        mainContainer.innerHTML = 
+        // const mainContainer = document.getElementById('main-content');
+        this.mainContainer.innerHTML = ``;
+        this.mainContainer.innerHTML = 
         `
         <div class="row">
             <div class="col s12 header-league card blue-grey darken-3">
