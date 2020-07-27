@@ -2,25 +2,12 @@ const APPSHELL_CACHE = 'my-league-app-shell-v1';
 const API_CACHE = 'my-league-api-v1';
 const LOGO_CACHE = 'my-league-logo-v1';
 
-let commons = [
+let assets = [
     "/",
     "/index.html",
     "/index.bundle.js",
-    "/manifest.json"
-]
-
-let fonts = [
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap"
-]
-
-let logo = [
-    "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg",
-    "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
-]
-
-let icons = [
+    "/vendors.bundle.js",
+    "/manifest.json",
     "/assets/icons/icon-72x72.png",
     "/assets/icons/icon-96x96.png",
     "/assets/icons/icon-128x128.png",
@@ -28,14 +15,19 @@ let icons = [
     "/assets/icons/icon-152x152.png",
     "/assets/icons/icon-192x192.png",
     "/assets/icons/icon-384x384.png",
-    "/assets/icons/icon-512x512.png"
-]
+    "/assets/icons/icon-512x512.png",
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap",
+    "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg",
+    "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
+];
 
 // Caching app-shell
 self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(APPSHELL_CACHE)
-            .then(cache => cache.addAll(commons, fonts, logo, icons))
+            .then(cache => cache.addAll(assets))
     );
 });
 
