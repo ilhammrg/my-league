@@ -8,10 +8,8 @@ class ClubPage {
         let squads = '';
         this._clubData.squad.forEach(player => {
             let { shirtNumber, name, position, nationality } = player;
-            // if (shirtNumber == null) shirtNumber = '-';
-            shirtNumber = (shirtNumber == null) ? '-' : shirtNumber;
-            // if (position == null) position = role;
-            position = (position == null) ? 'Coach' : position;
+            shirtNumber = (shirtNumber === null) ? '-' : shirtNumber;
+            position = (position === null) ? 'Coach' : position;
             squads += `
             <tr>
                 <td>${shirtNumber}</td>

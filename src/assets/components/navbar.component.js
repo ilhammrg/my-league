@@ -5,11 +5,11 @@ const Navbar = () => {
             <nav class="blue-grey darken-3">
                 <div class="nav-wrapper container">
                     <a href="#home" class="brand-logo left hide-on-med-and-down">
-                        <img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy">
+                        <img class="trophy-logo" src="assets/icons/icon-72.svg" alt="trophy">
                         <span>My League</span>
                     </a>
                     <a href="#home" class="brand-logo hide-on-large-only">
-                        <img class="trophy-logo" src="assets/icons/icon-72x72.png" alt="trophy">
+                        <img class="trophy-logo" src="assets/icons/icon-72.svg" alt="trophy">
                         <span>My League</span></a>
                     <a class="sidenav-trigger hide-on-large-only left" data-target="menu-side" href="#">
                         <i class="material-icons">menu</i>
