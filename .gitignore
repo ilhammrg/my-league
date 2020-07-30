@@ -115,4 +115,4 @@ out
 .pnp.*
 
 # Build output
-.dist
+dist/
