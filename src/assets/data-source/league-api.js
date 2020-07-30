@@ -1,8 +1,6 @@
 import FallbackPage from "../pages/fallback.page.js";
 
-const tokenAPI = '0d08af0570034b03a525c4af84529e5c';
-
-const getLeagueData = async url => {
+export const getLeagueData = async (url, token) => {
     if ('caches' in window) {
         await caches.match(url)
             .then(response => {
@@ -17,7 +15,7 @@ const getLeagueData = async url => {
         method: 'GET',
         mode: 'cors',
         headers: {
-            'X-Auth-Token': tokenAPI
+            'X-Auth-Token': token
         }
     })
         .then(response => response.json())
@@ -25,7 +23,7 @@ const getLeagueData = async url => {
         .catch(error => FallbackPage());
 }
 
-const getClubPromised = (url) => {
+export const getClubPromised = (url, token) => {
     return new Promise ((resolve, reject) => {
         if ('caches' in window) {
             caches.match(url)
@@ -41,12 +39,10 @@ const getClubPromised = (url) => {
             method: 'GET',
             mode: 'cors',
             headers: {
-                'X-Auth-Token': tokenAPI
+                'X-Auth-Token': token
             }
         })
         .then(response => response.json())
         .then(data => resolve(data))
     });
 }
-
-export {getLeagueData, getClubPromised};

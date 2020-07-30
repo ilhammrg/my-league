@@ -1,8 +1,8 @@
-const APPSHELL_CACHE = 'my-league-app-shell-v1';
+const COMMONS_CACHE = 'my-league-commons-v1';
 const API_CACHE = 'my-league-api-v1';
 const LOGO_CACHE = 'my-league-logo-v1';
 
-let assets = [
+const assets = [
     "/",
     "/index.html",
     "/index.bundle.js",
@@ -23,10 +23,10 @@ let assets = [
     "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
 ];
 
-// Caching app-shell
+// Caching common assets
 self.addEventListener("install", event => {
     event.waitUntil(
-        caches.open(APPSHELL_CACHE)
+        caches.open(COMMONS_CACHE)
             .then(cache => cache.addAll(assets))
     );
 });
