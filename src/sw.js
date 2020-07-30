@@ -1,85 +1,77 @@
-const COMMONS_CACHE = 'my-league-commons-v1';
-const API_CACHE = 'my-league-api-v1';
-const LOGO_CACHE = 'my-league-logo-v1';
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const assets = [
-    "/",
-    "/index.html",
-    "/index.bundle.js",
-    "/vendors.bundle.js",
-    "/manifest.json",
-    "/assets/icons/icon-72.svg",
-    "/assets/icons/icon-96.svg",
-    "/assets/icons/icon-128.svg",
-    "/assets/icons/icon-144.svg",
-    "/assets/icons/icon-152.svg",
-    "/assets/icons/icon-192.svg",
-    "/assets/icons/icon-384.svg",
-    "/assets/icons/icon-512.svg",
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap",
-    "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/1/13/LaLiga.svg",
-    "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg"
+if (workbox) {
+    console.log(`Workbox: Loaded.`);
+} else {
+    console.log(`Workbox: Loading failed.`);
+}
+
+const {cacheNames, setCacheNameDetails} = workbox.core;
+const {precacheAndRoute} = workbox.precaching;
+const {registerRoute} = workbox.routing;
+const {StaleWhileRevalidate, CacheFirst} = workbox.strategies;
+const {CacheableResponsePlugin} = workbox.cacheableResponse;
+
+const assetsCommon = [
+    {url: "/index.html", revision: "1"},
+    {url: "/index.bundle.js", revision: "1"},
+    {url: "/vendors.bundle.js", revision: "1"},
+    {url: "/manifest.json", revision: "1"},
+    {url: "/assets/icons/icon-72.svg", revision: "1"},
+    {url: "/assets/icons/icon-96.svg", revision: "1"},
+    {url: "/assets/icons/icon-128.svg", revision: "1"},
+    {url: "/assets/icons/icon-144.svg", revision: "1"},
+    {url: "/assets/icons/icon-152.svg", revision: "1"},
+    {url: "/assets/icons/icon-192.svg", revision: "1"},
+    {url: "/assets/icons/icon-384.svg", revision: "1"},
+    {url: "/assets/icons/icon-512.svg", revision: "1"}
 ];
 
-// Caching common assets
-self.addEventListener("install", event => {
-    event.waitUntil(
-        caches.open(COMMONS_CACHE)
-            .then(cache => cache.addAll(assets))
-    );
+setCacheNameDetails({
+    prefix: 'my-league',
+    suffix: 'v1',
+    precache: 'common-resources',
+    runtime: 'external-resources',
 });
 
-// Intercept fetch
-self.addEventListener("fetch", event => {
-    let base_url_api = "https://api.football-data.org/";
-    let base_url_logo = "https://upload.wikimedia.org/";
+// Precaching common assets
+precacheAndRoute(assetsCommon);
 
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                } else if (event.request.url.indexOf(base_url_api) > -1) {
-                    caches.open(API_CACHE)
-                        .then(cache => 
-                            fetch(event.request)
-                            .then(response => {
-                                cache.put(event.request.url, response.clone());
-                                return response;
-                            })
-                        )
-                } else if (event.request.url.indexOf(base_url_logo) > -1) {
-                    caches.open(LOGO_CACHE)
-                        .then(cache => 
-                            fetch(event.request)
-                            .then(response => {
-                                cache.put(event.request.url, response.clone());
-                                return response;
-                            })
-                        )
-                }
-                return fetch(event.request);
-        })
-    );
-});
+// Caching external assets
+registerRoute(
+    ({request}) => request.destination === 'image',
+    new CacheFirst({
+      plugins: [
+        new CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    }),
+);
 
-// Delete outdated app-shell
-self.addEventListener("activate", event => {
-    event.waitUntil(
-        caches.keys()
-        .then(cacheNames => 
-            Promise.all(
-                cacheNames.map(cacheName => {
-                    if (cacheName != APPSHELL_CACHE) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            )
-        )
-    );
-});
+// Caching api assets
+registerRoute(
+    /https:\/\/api\.football-data\.org\/v2/,
+    new StaleWhileRevalidate({
+      cacheName: `${cacheNames.prefix}-api-resources-${cacheNames.suffix}`,
+    }),
+);
+
+//  Caching Google Fonts Style
+registerRoute(
+    /^https:\/\/fonts\.googleapis\.com/,
+    new StaleWhileRevalidate({
+      cacheName: `${cacheNames.runtime}`,
+    }),
+);
+
+// Caching Google Fonts assets
+registerRoute(
+    /^https:\/\/fonts\.gstatic\.com/,
+    new CacheFirst({
+        cacheName: `${cacheNames.runtime}`,
+    }),
+);
 
 // Push notification handler
 self.addEventListener('push', event => {
