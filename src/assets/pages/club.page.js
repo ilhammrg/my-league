@@ -29,7 +29,7 @@ class ClubPage {
         this.mainContainer.innerHTML = `
         <div class="row">
             <div class="col s12 m6 offset-m3 l4">
-                <div class="card club-card blue-grey darken-3">
+                <div class="card club-card grey darken-4">
                     <div class="card-image">
                         <img class="club-logo" src="${logoUrl}" alt="club-logo">
                         <a id="save" class="save-button btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Save club">
@@ -56,7 +56,7 @@ class ClubPage {
                     </div>
                 </div>
             </div>
-            <div class="col s12 l8 squad-card blue-grey darken-3">
+            <div class="col s12 l8 squad-card grey darken-4">
                 <h5 class="center">Squads</h5>
                 <table class="highlight centered">
                     <thead>

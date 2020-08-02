@@ -6,7 +6,8 @@ export function createDB() {
     openDB('my-league', 1, {
         upgrade(db) {
             if (!db.objectStoreNames.contains('clubs')) {
-                db.createObjectStore('clubs', { keyPath: 'id' });
+                const createDb = db.createObjectStore('clubs', { keyPath: 'id' });
+                createDb.createIndex('id', 'id');
             }
         }
     });
@@ -22,20 +23,24 @@ async function getAllClubs() {
 
 async function insertClub(club) {
     const openDatabase = await openDB('my-league', 1);
-    openDatabase.add('clubs', club)
-        .then( () => {
-            M.toast({html: 'Club saved!'});
-        })
-        .catch( () => {
-            M.toast({html: 'Unable to save duplicate club!'});
+    openDatabase.getFromIndex('clubs', 'id', club.id)
+        .then(item => {
+            if (item === undefined) {
+                openDatabase.put('clubs', club)
+                    .then(() => {
+                        M.toast({html: `${club.shortName} saved!`});
+                    });
+            } else {
+                M.toast({html: `${item.shortName} already in saved club!`});
+            }
         });
 }
 
-async function deleteClub(key) {
+async function deleteClub(key, shortName) {
     const openDatabase = await openDB('my-league', 1);
     openDatabase.delete('clubs', key)
         .then( () => {
-            M.toast({html: 'Club removed!'});
+            M.toast({html: `${shortName} removed!`});
         });
 }
 
@@ -61,8 +66,9 @@ export function getSavedClubs() {
             let removeButton = document.querySelectorAll('.remove-button');
             for (let button of removeButton) {
                 button.addEventListener('click', function(event) {
-                    let keyPath = parseInt(event.target.dataset.keypath);
-                    deleteClub(keyPath).then(() => {
+                    const keyPath = parseInt(event.target.dataset.keypath);
+                    const shortName = event.target.dataset.shortname;
+                    deleteClub(keyPath, shortName).then(() => {
                         getSavedClubs();
                     });
                 });

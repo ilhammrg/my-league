@@ -1,45 +1,61 @@
 {
-  "name": "My League",
-  "short_name": "My League",
-  "gcm_sender_id": "687032362628",
-  "theme_color": "#455a64",
-  "background_color": "#455a64",
-  "display": "standalone",
-  "scope": "/",
-  "orientation": "portrait",
-  "start_url": "/index.html",
   "icons": [
     {
-        "src": "assets/icons/icon-72.svg",
-        "sizes": "72x72"
+      "src": "icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-96.svg",
-        "sizes": "96x96"
+      "src": "icon_384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-128.svg",
-        "sizes": "128x128"
+      "src": "icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-144.svg",
-        "sizes": "144x144"
+      "src": "icon_152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-152.svg",
-        "sizes": "152x152"
+      "src": "icon_144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-192.svg",
-        "sizes": "192x192"
+      "src": "icon_128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-384.svg",
-        "sizes": "384x384"
+      "src": "icon_96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src": "assets/icons/icon-512.svg",
-        "sizes": "512x512"
+      "src": "icon_72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "name": "My League",
+  "short_name": "My League",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/index.html",
+  "gcm_sender_id": "687032362628",
+  "theme_color": "#424242",
+  "background_color": "#424242",
+  "scope": "/"
 }

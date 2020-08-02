@@ -17,14 +17,15 @@ const assetsCommon = [
     {url: "/index.bundle.js", revision: "1"},
     {url: "/vendors.bundle.js", revision: "1"},
     {url: "/manifest.json", revision: "1"},
-    {url: "/assets/icons/icon-72.svg", revision: "1"},
-    {url: "/assets/icons/icon-96.svg", revision: "1"},
-    {url: "/assets/icons/icon-128.svg", revision: "1"},
-    {url: "/assets/icons/icon-144.svg", revision: "1"},
-    {url: "/assets/icons/icon-152.svg", revision: "1"},
-    {url: "/assets/icons/icon-192.svg", revision: "1"},
-    {url: "/assets/icons/icon-384.svg", revision: "1"},
-    {url: "/assets/icons/icon-512.svg", revision: "1"}
+    {url: "/icon_72x72.png", revision: "1"},
+    {url: "/icon_96x96.png", revision: "1"},
+    {url: "/icon_128x128.png", revision: "1"},
+    {url: "/icon_144x144.png", revision: "1"},
+    {url: "/icon_152x152.png", revision: "1"},
+    {url: "/icon_192x192.png", revision: "1"},
+    {url: "/icon_384x384.png", revision: "1"},
+    {url: "/icon_512x512.png", revision: "1"},
+    {url: "/assets/icons/icon.svg", revision: "1"}
 ];
 
 setCacheNameDetails({

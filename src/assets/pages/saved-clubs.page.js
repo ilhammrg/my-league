@@ -10,7 +10,7 @@ class SavedClubsPage {
             const logoUrl = crestUrl.replace(/^http:\/\//i, 'https://');
             savedClubsElement += `
             <div class="col s12 m6 l4 saved-club-container">
-                <div class="card hoverable saved-club-card blue-grey darken-3">
+                <div class="card hoverable saved-club-card grey darken-4">
                     <a 
                     class="saved-detail-button" 
                     href="#teams/${id}"
@@ -19,7 +19,7 @@ class SavedClubsPage {
                     >      
                     </a>
                     <a class="btn-floating halfway-fab waves-effect waves-light cyan darken-1" title="Remove club">
-                        <i class="remove-button material-icons" data-keypath="${id}">delete</i>
+                        <i class="remove-button material-icons" data-keypath="${id}" data-shortname="${shortName}">delete</i>
                     </a>
                 </div>
             </div>

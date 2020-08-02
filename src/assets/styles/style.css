@@ -66,10 +66,6 @@ a {
     margin-top: 20px;
 }
 
-.header-league {
-    border-radius: 7px;
-}
-
 .tabs {
     border-radius: 7px;
 }
@@ -94,7 +90,7 @@ a {
 }
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
-    background-color: #263238;
+    background-color: #616161;
 }
 
 .standing-club-logo {

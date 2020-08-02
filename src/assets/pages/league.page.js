@@ -55,14 +55,14 @@ class LeaguePage {
         this.mainContainer.innerHTML = 
         `
         <div class="row">
-            <div class="col s12 header-league card blue-grey darken-3">
+            <div class="col s12">
                 <h5>${name}</h5>
                 <p>${area.name}</p>
             </div>
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s6 blue-grey darken-3 waves-teal"><a class="active white-text" href="#standings">Standings</a></li>
-                    <li class="tab col s6 blue-grey darken-3"><a class="white-text" href="#top-scorers">Top Scorers</a></li>
+                    <li class="tab col s6 grey darken-4 waves-teal"><a class="active white-text" href="#standings">Standings</a></li>
+                    <li class="tab col s6 grey darken-4"><a class="white-text" href="#top-scorers">Top Scorers</a></li>
                 </ul>
             </div>
             <div id="standings" class="col s12">
