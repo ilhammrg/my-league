@@ -7,11 +7,6 @@ Football statistics with offline caches feature.
 You can visit the live demo right here:
 - [My League Live Demo](https://my-league-apps.web.app/)
 
-## Data Sources
-
-All football statistics and data in this site are from this cool football API:
-- [Football-data](https://www.football-data.org/)
-
 ## Features
 
 - Offline cache using cache storage
@@ -20,6 +15,18 @@ All football statistics and data in this site are from this cool football API:
 - Mobile friendly
 - Installable
 
-## Authors
+## Data Sources
+
+All football statistics and data in this site are from this cool football API:
+- [Football-data](https://www.football-data.org/)
+
+## Setup Project
+
+```
+$ npm install
+$ npm run dev
+```
+
+## Author
 
 * **Ilham Muhammad** - [ilhammrg](https://github.com/ilhammrg)
