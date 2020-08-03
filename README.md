@@ -1,39 +1,25 @@
 # My League
 
-My League web apps.
+Football statistics with offline caches feature.
 
-## Getting Started
+## Live Demo
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+You can visit the live demo right here:
+- [My League Live Demo](https://my-league-apps.web.app/)
 
-### Prerequisites
+## Data Sources
 
-Node Package Manager/NPM is needed to be installed first.
-Refer to Node.Js documentation for npm installation https://nodejs.org/
+All football statistics and data in this site are from this cool football API:
+- [Football-data](https://www.football-data.org/)
 
-Assumed NPM has been installed, run this command in project directory:
+## Features
 
-```
-npm install
-```
-
-After finished, "node_modules" folder will be created in project directory.
-
-
-### Installing
-
-Run this command to run development mode of this project:
-
-```
-npm run dev
-```
-
-Run this command to bundle all source code. The output will be stored in "dist" folder in the project directory.
-
-```
-npm run build
-```
+- Offline cache using cache storage
+- IndexedDB for local databases
+- Single page application style
+- Mobile friendly
+- Installable
 
 ## Authors
 
-* **Ilham Muhammad** - *Initial work* - [ilhammrg](https://github.com/ilhammrg)
+* **Ilham Muhammad** - [ilhammrg](https://github.com/ilhammrg)
