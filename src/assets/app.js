@@ -1,20 +1,21 @@
 import { createDB } from './services/database.js';
-import { registerServiceWorker, requestPermission } from './services/services.js';
 import { handleUrlChange } from './data-source/nav.js';
+import Navbar from './components/navbar.component.js';
+import Sidebar from './components/sidebar.component.js';
+import Footer from './components/footer.component.js';
+import HomePage from "./pages/home.page.js";
 
 const App = () => {
-    // Register Service Worker
-    if (!('serviceWorker' in navigator)) {
-        console.error("This browser does not support Service Worker");
-    } else {
-        registerServiceWorker();
-        requestPermission();
-    }
-
     // Initiate database
     createDB();
 
-    // Handle get request
+    // Render App-shell
+    Navbar();
+    Sidebar();
+    Footer();
+    HomePage();
+
+    // Handle user interaction
     handleUrlChange();
 }
 

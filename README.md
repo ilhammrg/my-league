@@ -4,8 +4,7 @@ Football statistics with offline caches feature.
 
 ## Live Demo
 
-You can visit the live demo right here:
-- [My League Live Demo](https://my-league-apps.web.app/)
+- [Live Demo](https://my-league-apps.web.app/)
 
 ## Features
 
