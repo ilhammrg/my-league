@@ -1,7 +1,7 @@
 # My League
 
 Football statistics, PWA ready!
-API for this project:
+</br>Football stats API:
 - [Football-data](https://www.football-data.org/)
 
 ## Live Demo
